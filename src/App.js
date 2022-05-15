@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import styles from './App.module.scss';
+import Hero from "./Components/Hero/Hero.js";
+import Time from './Components/Time/Time';
+import Button from './Components/Button/Button';
+import { useEffect, useState } from "react";
+
 
 function App() {
+  
+  const [totalTime, setTotalTime] = useState(0);
+  
+  const [inter, setInter] = useState(null);
+
+  const start = () => {
+    setInter(setInterval(() => {
+      setTotalTime(totalTime => totalTime + 1);
+      
+    }, 3))
+  }
+
+  const stop = () => {
+    setInter(clearInterval(inter));
+  }
+
+  const clear = () => {
+    setTotalTime(0);
+  }
+
+    
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.container}>
+      <Hero />
+      <Time totalTime={totalTime} />
+      <div className={styles.buttons}>
+        <Button action={start}>START</Button>
+        <Button action={stop}>STOP</Button>
+        <Button action={clear}>RESET</Button>
+      </div>
     </div>
   );
 }
