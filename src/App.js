@@ -14,8 +14,9 @@ function App() {
 
   useEffect(() => {
     if(status === 1){
-      setInter(setInterval(() => setTotalTime(totalTime => totalTime + 1), 5));
+      setInter(setInterval(() => setTotalTime(totalTime => totalTime + 1), 10));
     }
+    return () => clearInterval(inter);
   }, [status])
   
   const start = () => {
@@ -24,10 +25,13 @@ function App() {
 
   const stop = () => {
     setInter(clearInterval(inter));
+    setStatus(0);
   }
 
   const clear = () => {
     setTotalTime(0);
+    setInter(clearInterval(inter));
+    setStatus(0);
   }
 
     
