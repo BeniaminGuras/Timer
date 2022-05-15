@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     if(status === 1){
-      setInterval(setTotalTime(totalTime => totalTime + 1), 1);
+      setInter(setInterval(setTotalTime(totalTime => totalTime + 1), 1));
     }
   }, [status])
   
