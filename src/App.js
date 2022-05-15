@@ -8,14 +8,18 @@ import { useEffect, useState } from "react";
 function App() {
   
   const [totalTime, setTotalTime] = useState(0);
-  
+  const [status, setStatus] = useState(null);
   const [inter, setInter] = useState(null);
 
+
+  useEffect(() => {
+    if(status === 1){
+      setInterval(setTotalTime(totalTime => totalTime + 1), 1);
+    }
+  }, [status])
+  
   const start = () => {
-    setInter(setInterval(() => {
-      setTotalTime(totalTime => totalTime + 1);
-      
-    }, 3))
+    setStatus(1);
   }
 
   const stop = () => {
